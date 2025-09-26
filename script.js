@@ -1,103 +1,9 @@
-// Medical Referrals System JavaScript - Static Version
+// Medical Referrals System JavaScript
 
 // Global variables
 let currentTheme = localStorage.getItem('theme') || 'light';
-
-// Static data for demonstration
-const staticReferrals = [
-    {
-        id: '1',
-        patientId: 'PAT001',
-        patientName: 'أحمد محمد علي',
-        referralNumber: 'REF2024001',
-        destination: 'مستشفى القدس - القدس',
-        status: 'approved',
-        approvalDate: '2024-09-20T10:30:00.000Z',
-        medicalCondition: 'جراحة القلب',
-        createdAt: '2024-09-15T08:00:00.000Z'
-    },
-    {
-        id: '2',
-        patientId: 'PAT002',
-        patientName: 'فاطمة أحمد حسن',
-        referralNumber: 'REF2024002',
-        destination: 'مستشفى الشفاء - غزة',
-        status: 'pending',
-        medicalCondition: 'علاج الأورام',
-        createdAt: '2024-09-18T14:20:00.000Z'
-    },
-    {
-        id: '3',
-        patientId: 'PAT003',
-        patientName: 'محمد عبد الله قاسم',
-        referralNumber: 'REF2024003',
-        destination: 'مستشفى الملك حسين - عمان',
-        status: 'local_followup',
-        approvalDate: '2024-09-23T16:45:00.000Z',
-        medicalCondition: 'جراحة العظام',
-        createdAt: '2024-09-10T11:00:00.000Z'
-    },
-    {
-        id: '4',
-        patientId: 'PAT004',
-        patientName: 'سارة محمود خليل',
-        referralNumber: 'REF2024004',
-        destination: 'مستشفى الملك فيصل التخصصي - الرياض',
-        status: 'approved',
-        approvalDate: '2024-09-24T09:15:00.000Z',
-        medicalCondition: 'زراعة الكلى',
-        createdAt: '2024-09-05T13:30:00.000Z'
-    }
-];
-
-const staticBorderCrossings = [
-    {
-        id: '1',
-        name: 'معبر الكرامة',
-        nameEn: 'King Hussein Bridge',
-        status: 'open',
-        workingHours: '24 ساعة',
-        notes: 'مفتوح للمرضى والمرافقين',
-        lastUpdate: '2024-09-25T12:00:00.000Z'
-    },
-    {
-        id: '2',
-        name: 'معبر رفح',
-        nameEn: 'Rafah Crossing',
-        status: 'closed',
-        workingHours: 'مغلق مؤقتاً',
-        notes: 'مغلق بسبب الأوضاع الأمنية',
-        lastUpdate: '2024-09-25T10:30:00.000Z'
-    },
-    {
-        id: '3',
-        name: 'معبر بيت حانون',
-        nameEn: 'Erez Crossing',
-        status: 'restricted',
-        workingHours: '8:00 - 16:00',
-        notes: 'مفتوح للحالات الطبية الطارئة فقط',
-        lastUpdate: '2024-09-25T14:15:00.000Z'
-    },
-    {
-        id: '4',
-        name: 'معبر القنيطرة',
-        nameEn: 'Quneitra Crossing',
-        status: 'open',
-        workingHours: '6:00 - 18:00',
-        notes: 'مفتوح للحالات الطبية المعتمدة',
-        lastUpdate: '2024-09-25T11:20:00.000Z'
-    }
-];
-
-const staticStatistics = {
-    totalReferrals: 1247,
-    completedTravels: 892,
-    monthlyReferrals: 156,
-    pendingReferrals: 234,
-    approvalRate: 78,
-    averageProcessingDays: 12,
-    lastUpdated: '2024-09-25T14:00:00.000Z'
-};
+let borderCrossings = [];
+let statistics = {};
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
@@ -140,10 +46,14 @@ function initializeEventListeners() {
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => toggleFAQ(question));
     });
+
+    // Auto-refresh border crossings and statistics every 2 seconds for real-time updates
+    setInterval(loadBorderCrossings, 2000);
+    setInterval(loadStatistics, 2000);
 }
 
-// Search functionality with static data
-function handleSearch(event) {
+// Search functionality
+async function handleSearch(event) {
     event.preventDefault();
     
     const formData = new FormData(event.target);
@@ -159,36 +69,29 @@ function handleSearch(event) {
     searchResults.innerHTML = '<div class="loading"></div>';
     searchResults.classList.add('show');
     
-    // Simulate API delay
-    setTimeout(() => {
-        try {
-            let referrals = staticReferrals;
-            
-            // Filter referrals based on search criteria
-            if (patientId) {
-                referrals = referrals.filter(referral => 
-                    referral.patientId.includes(patientId)
-                );
-            }
-            
-            if (referralNumber) {
-                referrals = referrals.filter(referral => 
-                    referral.referralNumber.includes(referralNumber)
-                );
-            }
-            
-            displaySearchResults(referrals);
-            
-        } catch (error) {
-            console.error('Search error:', error);
-            searchResults.innerHTML = `
-                <div class="alert-info" style="background: #fee2e2; border-color: #fecaca;">
-                    <div class="alert-icon">⚠️</div>
-                    <p>حدث خطأ أثناء البحث. يرجى المحاولة مرة أخرى.</p>
-                </div>
-            `;
+    try {
+        const params = new URLSearchParams();
+        if (patientId) params.append('patientId', patientId);
+        if (referralNumber) params.append('referralNumber', referralNumber);
+        
+        const response = await fetch(`/api/referrals/search?${params}`);
+        
+        if (!response.ok) {
+            throw new Error('فشل في البحث');
         }
-    }, 500);
+        
+        const referrals = await response.json();
+        displaySearchResults(referrals);
+        
+    } catch (error) {
+        console.error('Search error:', error);
+        searchResults.innerHTML = `
+            <div class="alert-info" style="background: #fee2e2; border-color: #fecaca;">
+                <div class="alert-icon">⚠️</div>
+                <p>حدث خطأ أثناء البحث. يرجى المحاولة مرة أخرى.</p>
+            </div>
+        `;
+    }
 }
 
 function displaySearchResults(referrals) {
@@ -237,10 +140,18 @@ function getStatusText(status) {
     return statusMap[status] || status;
 }
 
-// Border Crossings with static data
-function loadBorderCrossings() {
+// Border Crossings
+async function loadBorderCrossings() {
     try {
+        const response = await fetch('/api/border-crossings');
+        
+        if (!response.ok) {
+            throw new Error('فشل في تحميل بيانات المعابر');
+        }
+        
+        borderCrossings = await response.json();
         displayBorderCrossings();
+        
     } catch (error) {
         console.error('Border crossings error:', error);
         document.getElementById('borderCrossings').innerHTML = `
@@ -255,8 +166,8 @@ function loadBorderCrossings() {
 function displayBorderCrossings() {
     const container = document.getElementById('borderCrossings');
     
-    const crossingsHTML = staticBorderCrossings.map(crossing => `
-        <div class="crossing-item">
+    const crossingsHTML = borderCrossings.map(crossing => `
+        <div class="crossing-item" data-crossing-id="${crossing.id}">
             <div class="crossing-info">
                 <h4>${crossing.name}</h4>
                 <p>${crossing.nameEn}</p>
@@ -264,15 +175,22 @@ function displayBorderCrossings() {
                 ${crossing.notes ? `<p>ملاحظات: ${crossing.notes}</p>` : ''}
                 <p style="font-size: 0.75rem; color: var(--text-muted);">
                     آخر تحديث: ${formatDate(crossing.lastUpdate)}
+                    <span class="update-indicator" style="color: #16a34a; font-weight: 500;">🔴 مباشر</span>
                 </p>
             </div>
-            <div class="crossing-status crossing-${crossing.status}">
+            <div class="crossing-status crossing-${crossing.status}" id="status-${crossing.id}">
                 ${getCrossingStatusText(crossing.status)}
             </div>
         </div>
     `).join('');
     
     container.innerHTML = crossingsHTML;
+    
+    // Add visual indication of live updates
+    const indicators = document.querySelectorAll('.update-indicator');
+    indicators.forEach(indicator => {
+        indicator.style.animation = 'pulse 1s infinite';
+    });
 }
 
 function getCrossingStatusText(status) {
@@ -284,10 +202,18 @@ function getCrossingStatusText(status) {
     return statusMap[status] || status;
 }
 
-// Statistics with static data
-function loadStatistics() {
+// Statistics
+async function loadStatistics() {
     try {
+        const response = await fetch('/api/statistics');
+        
+        if (!response.ok) {
+            throw new Error('فشل في تحميل الإحصائيات');
+        }
+        
+        statistics = await response.json();
         displayStatistics();
+        
     } catch (error) {
         console.error('Statistics error:', error);
         document.getElementById('statistics').innerHTML = `
@@ -303,33 +229,52 @@ function displayStatistics() {
     const container = document.getElementById('statistics');
     
     const statsHTML = `
-        <div class="stat-item">
-            <div class="stat-value">${staticStatistics.totalReferrals.toLocaleString('ar')}</div>
+        <div class="stat-item" data-stat="total">
+            <div class="stat-value">${statistics.totalReferrals.toLocaleString('ar')}</div>
             <div class="stat-label">إجمالي التحويلات</div>
         </div>
-        <div class="stat-item">
-            <div class="stat-value">${staticStatistics.completedTravels.toLocaleString('ar')}</div>
+        <div class="stat-item" data-stat="completed">
+            <div class="stat-value">${statistics.completedTravels.toLocaleString('ar')}</div>
             <div class="stat-label">السفرات المكتملة</div>
         </div>
-        <div class="stat-item">
-            <div class="stat-value">${staticStatistics.monthlyReferrals.toLocaleString('ar')}</div>
+        <div class="stat-item" data-stat="monthly">
+            <div class="stat-value">${statistics.monthlyReferrals.toLocaleString('ar')}</div>
             <div class="stat-label">تحويلات هذا الشهر</div>
         </div>
-        <div class="stat-item">
-            <div class="stat-value">${staticStatistics.pendingReferrals.toLocaleString('ar')}</div>
+        <div class="stat-item" data-stat="pending">
+            <div class="stat-value">${statistics.pendingReferrals.toLocaleString('ar')}</div>
             <div class="stat-label">في الانتظار</div>
         </div>
-        <div class="stat-item">
-            <div class="stat-value">%${staticStatistics.approvalRate.toLocaleString('ar')}</div>
+        <div class="stat-item" data-stat="approval">
+            <div class="stat-value">%${statistics.approvalRate.toLocaleString('ar')}</div>
             <div class="stat-label">معدل الموافقة</div>
         </div>
-        <div class="stat-item">
-            <div class="stat-value">${staticStatistics.averageProcessingDays.toLocaleString('ar')} يوم</div>
+        <div class="stat-item" data-stat="processing">
+            <div class="stat-value">${statistics.averageProcessingDays.toLocaleString('ar')} يوم</div>
             <div class="stat-label">متوسط المعالجة</div>
         </div>
     `;
     
     container.innerHTML = statsHTML;
+    
+    // Add visual indication that data is updating in real-time
+    const statItems = document.querySelectorAll('.stat-item');
+    statItems.forEach(item => {
+        item.style.position = 'relative';
+        // Add a small indicator
+        const indicator = document.createElement('div');
+        indicator.style.cssText = `
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 8px;
+            height: 8px;
+            background: #16a34a;
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+        `;
+        item.appendChild(indicator);
+    });
 }
 
 // FAQ functionality
@@ -396,7 +341,7 @@ function showAlert(message, type = 'info') {
 
 // Smooth scrolling for anchor links
 document.addEventListener('click', function(e) {
-    if (e.target.tagName === 'A' && e.target.getAttribute('href') && e.target.getAttribute('href').startsWith('#')) {
+    if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
         e.preventDefault();
         const target = document.querySelector(e.target.getAttribute('href'));
         if (target) {
@@ -421,18 +366,16 @@ document.addEventListener('keydown', function(e) {
 });
 
 // Add keyboard navigation to FAQ questions
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.setAttribute('tabindex', '0');
-        question.setAttribute('role', 'button');
-        question.setAttribute('aria-expanded', 'false');
-    });
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.setAttribute('tabindex', '0');
+    question.setAttribute('role', 'button');
+    question.setAttribute('aria-expanded', 'false');
 });
 
 // Update aria-expanded when FAQ is toggled
-const originalToggleFAQ = toggleFAQ;
-function toggleFAQ(questionElement) {
+const originalToggleFAQ = window.toggleFAQ;
+window.toggleFAQ = function(questionElement) {
     const wasActive = questionElement.parentElement.classList.contains('active');
     originalToggleFAQ(questionElement);
     questionElement.setAttribute('aria-expanded', !wasActive);
-}
+};
