@@ -120,7 +120,7 @@ referrals_data = [
      'medical_condition': 'علاج طبيعي', 'created_at': datetime.now() - timedelta(days=12)}
 ]
 
-        ]
+     
         
         referrals = []
         for data in referrals_data:
