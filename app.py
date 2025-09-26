@@ -94,25 +94,32 @@ def init_db():
     # Check if data already exists
     if MedicalReferral.query.count() == 0:
         # Add sample medical referrals
-        referrals_data = [
-            {'patient_id': 'PAT001', 'patient_name': 'أحمد محمد علي', 'referral_number': 'REF2024001',
-             'destination': 'مستشفى القدس - القدس', 'status': 'approved',
-             'approval_date': datetime.now() - timedelta(days=5),
-             'medical_condition': 'جراحة القلب', 'created_at': datetime.now() - timedelta(days=10)},
-            {'patient_id': 'PAT002', 'patient_name': 'فاطمة أحمد حسن', 'referral_number': 'REF2024002',
-             'destination': 'مستشفى الشفاء - غزة', 'status': 'pending',
-             'medical_condition': 'علاج الأورام', 'created_at': datetime.now() - timedelta(days=7)},
-            {'patient_id': 'PAT003', 'patient_name': 'محمد عبد الله قاسم', 'referral_number': 'REF2024003',
-             'destination': 'مستشفى الملك حسين - عمان', 'status': 'local_followup',
-             'approval_date': datetime.now() - timedelta(days=2),
-             'medical_condition': 'جراحة العظام', 'created_at': datetime.now() - timedelta(days=15)},
-            {'patient_id': 'PAT004', 'patient_name': 'سارة محمود خليل', 'referral_number': 'REF2024004',
-             'destination': 'مستشفى الملك فيصل التخصصي - الرياض', 'status': 'approved',
-             'approval_date': datetime.now() - timedelta(days=1),
-             'medical_condition': 'زراعة الكلى', 'created_at': datetime.now() - timedelta(days=20)},
-            {'patient_id': 'PAT005', 'patient_name': 'عمر حسام الدين', 'referral_number': 'REF2024005',
-             'destination': 'مستشفى الجامعة الأردنية - عمان', 'status': 'rejected',
-             'medical_condition': 'علاج طبيعي', 'created_at': datetime.now() - timedelta(days=12)}
+
+referrals_data = [
+    {'patient_id': 'PAT001', 'patient_name': 'أحمد محمد علي', 'referral_number': 'REF2024001',
+     'destination': 'مستشفى القدس - القدس', 'status': 'approved',
+     'approval_date': datetime.now() - timedelta(days=5),
+     'medical_condition': 'جراحة القلب', 'created_at': datetime.now() - timedelta(days=10)},
+     
+    {'patient_id': 'PAT002', 'patient_name': 'فاطمة أحمد حسن', 'referral_number': 'REF2024002',
+     'destination': 'مستشفى الشفاء - غزة', 'status': 'pending',
+     'medical_condition': 'علاج الأورام', 'created_at': datetime.now() - timedelta(days=7)},
+     
+    {'patient_id': 'PAT003', 'patient_name': 'محمد عبد الله قاسم', 'referral_number': 'REF2024003',
+     'destination': 'مستشفى الملك حسين - عمان', 'status': 'local_followup',
+     'approval_date': datetime.now() - timedelta(days=2),
+     'medical_condition': 'جراحة العظام', 'created_at': datetime.now() - timedelta(days=15)},
+     
+    {'patient_id': 'PAT004', 'patient_name': 'سارة محمود خليل', 'referral_number': 'REF2024004',
+     'destination': 'مستشفى الملك فيصل التخصصي - الرياض', 'status': 'approved',
+     'approval_date': datetime.now() - timedelta(days=1),
+     'medical_condition': 'زراعة الكلى', 'created_at': datetime.now() - timedelta(days=20)},
+     
+    {'patient_id': 'PAT005', 'patient_name': 'عمر حسام الدين', 'referral_number': 'REF2024005',
+     'destination': 'مستشفى الجامعة الأردنية - عمان', 'status': 'rejected',
+     'medical_condition': 'علاج طبيعي', 'created_at': datetime.now() - timedelta(days=12)}
+]
+
         ]
         
         referrals = []
