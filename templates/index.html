@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>نظام التحويلات الطبية - وزارة الصحة الفلسطينية</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
+        />
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo">🏥</div>
+                        <div class="header-text">
+                            <h1>نظام التحويلات الطبية</h1>
+                            <p>وزارة الصحة الفلسطينية - الضفة الغربية</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="theme-toggle" onclick="toggleTheme()">
+                            🌙
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <!-- Search Section -->
+                <section class="search-section">
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="section-title">
+                                🔍 البحث عن التحويلات الطبية
+                            </h2>
+                            <p class="section-description">
+                                يمكنك البحث عن التحويلة الطبية باستخدام رقم
+                                الهوية أو رقم التحويلة
+                            </p>
+
+                            <form class="search-form" id="searchForm">
+                                <div class="form-group">
+                                    <label for="patientId">رقم الهوية</label>
+                                    <input
+                                        type="text"
+                                        id="patientId"
+                                        name="patientId"
+                                        placeholder="أدخل رقم الهوية"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="referralNumber"
+                                        >رقم التحويلة</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="referralNumber"
+                                        name="referralNumber"
+                                        placeholder="أدخل رقم التحويلة"
+                                    />
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <span class="btn-icon">🔍</span>
+                                    بحث
+                                </button>
+                            </form>
+
+                            <div
+                                id="searchResults"
+                                class="search-results"
+                            ></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Status Updates -->
+                <section class="status-updates">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="section-title">
+                                📢 تحديثات التحويلات الطبية
+                            </h3>
+                            <div class="alert-info">
+                                <div class="alert-icon">ℹ️</div>
+                                <p>
+                                    يرجى متابعة حالة التحويلة من خلال النظام.
+                                    سيتم التواصل معكم عند توفر مواعيد جديدة.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Border Crossings & Statistics -->
+                <div class="grid-two-cols">
+                    <!-- Border Crossings -->
+                    <section class="border-crossings">
+                        <div class="card">
+                            <div class="card-content">
+                                <h3 class="section-title">🚪 حالة المعابر</h3>
+                                <div
+                                    id="borderCrossings"
+                                    class="border-crossings-list"
+                                >
+                                    <!-- Border crossings will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Statistics -->
+                    <section class="statistics">
+                        <div class="card">
+                            <div class="card-content">
+                                <h3 class="section-title">
+                                    📊 إحصائيات النظام
+                                </h3>
+                                <div id="statistics" class="statistics-grid">
+                                    <!-- Statistics will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Guidelines -->
+                <section class="guidelines">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="section-title">
+                                📋 إرشادات التحويلات الطبية
+                            </h3>
+                            <div class="guidelines-grid">
+                                <div class="guideline-item">
+                                    <div class="guideline-icon">📝</div>
+                                    <div class="guideline-content">
+                                        <h4>تقديم الطلب</h4>
+                                        <p>
+                                            يتم تقديم طلب التحويلة الطبية من
+                                            خلال الطبيب المختص في المركز الصحي
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="guideline-item">
+                                    <div class="guideline-icon">⏱️</div>
+                                    <div class="guideline-content">
+                                        <h4>مدة المعالجة</h4>
+                                        <p>
+                                            تستغرق معالجة الطلب عادة من 10-14
+                                            يوم عمل حسب نوع الحالة
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="guideline-item">
+                                    <div class="guideline-icon">📋</div>
+                                    <div class="guideline-content">
+                                        <h4>الوثائق المطلوبة</h4>
+                                        <p>
+                                            هوية المريض، التقرير الطبي،
+                                            والفحوصات المخبرية والإشعاعية
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="guideline-item">
+                                    <div class="guideline-icon">👥</div>
+                                    <div class="guideline-content">
+                                        <h4>المرافق</h4>
+                                        <p>
+                                            يُسمح بمرافق واحد للمريض حسب الضوابط
+                                            المعمول بها
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FAQ -->
+                <section class="faq">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="section-title">❓ الأسئلة الشائعة</h3>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >كيف يمكنني معرفة حالة التحويلة
+                                            الطبية؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            يمكنك البحث عن حالة التحويلة
+                                            باستخدام رقم الهوية أو رقم التحويلة
+                                            في صفحة البحث أعلاه.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >كم تستغرق معالجة طلب
+                                            التحويلة؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            تستغرق معالجة الطلب عادة من 10-14
+                                            يوم عمل، وقد تختلف حسب نوع الحالة
+                                            الطبية ومدى الحاجة للعلاج.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >ما هي الوثائق المطلوبة
+                                            للتحويلة؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            الوثائق المطلوبة تشمل: هوية المريض،
+                                            التقرير الطبي المفصل، الفحوصات
+                                            المخبرية والإشعاعية الحديثة، وأي
+                                            وثائق طبية أخرى ذات صلة.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Links -->
+                <section class="quick-links">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="section-title">🔗 روابط مفيدة</h3>
+                            <div class="links-grid">
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=article&id=324&Itemid=167"
+                                    target="_blank"
+                                    class="link-card"
+                                >
+                                    <div class="link-icon">👥</div>
+                                    <div class="link-content">
+                                        <div class="link-title">
+                                            متابعة المرضى المسافرين
+                                        </div>
+                                        <div class="link-description">
+                                            تتبع حالة المرضى خارج الضفة
+                                        </div>
+                                    </div>
+                                </a>
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=category&id=95&Itemid=506"
+                                    target="_blank"
+                                    class="link-card"
+                                >
+                                    <div class="link-icon">🏥</div>
+                                    <div class="link-content">
+                                        <div class="link-title">
+                                            دليل المستشفيات
+                                        </div>
+                                        <div class="link-description">
+                                            قائمة بالمستشفيات المعتمدة
+                                        </div>
+                                    </div>
+                                </a>
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=article&id=280&Itemid=114"
+                                    target="_blank"
+                                    class="link-card"
+                                >
+                                    <div class="link-icon">📞</div>
+                                    <div class="link-content">
+                                        <div class="link-title">
+                                            أرقام الاتصال
+                                        </div>
+                                        <div class="link-description">
+                                            أرقام هامة للتواصل
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>وزارة الصحة الفلسطينية</h4>
+                        <p>
+                            نعمل على تقديم أفضل الخدمات الصحية للمواطنين
+                            الفلسطينيين
+                        </p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>روابط سريعة</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.moh.ps">الموقع الرسمي</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=article&id=280&Itemid=114"
+                                    >اتصل بنا</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>معلومات الاتصال</h4>
+                        <p>📞 الخط الساخن: 1800</p>
+                        <p>📧 البريد الإلكتروني: info@moh.ps</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        &copy; 2025 وزارة الصحة الفلسطينية - جميع الحقوق محفوظة
+                        اعداد عبدالرحيم صلاح
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
+</html>
