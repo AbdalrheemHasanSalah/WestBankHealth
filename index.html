@@ -509,7 +509,544 @@
                             </li>
                             <li>
                                 <a
+                                    href="<!doctype html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>نظام التحويلات الطبية -الخدمات الطبية العسكرية</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo">🏥</div>
+                        <div class="header-text">
+                            <h1>نظام التحويلات الطبية</h1>
+                            <p>الخدمات الطبية العسكرية - الضفة الغربية</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="theme-toggle" onclick="toggleTheme()">
+                            🌙
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <!-- Search Section -->
+                <section class="search-section">
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="section-title">
+                                🔍 البحث عن التحويلات الطبية
+                            </h2>
+                            <p class="section-description">
+                                يمكنك البحث عن التحويلة الطبية باستخدام رقم
+                                الهوية أو رقم التأمين
+                            </p>
+
+                            <form class="search-form" id="searchForm">
+                                <div class="form-group">
+                                    <label for="patientId">رقم الهوية</label>
+                                    <input
+                                        type="text"
+                                        id="patientId"
+                                        name="patientId"
+                                        placeholder="أدخل رقم الهوية"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="referralNumber">رقم التأمين</label>
+                                    <input
+                                        type="text"
+                                        id="referralNumber"
+                                        name="referralNumber"
+                                        placeholder="أدخل رقم التأمين"
+                                    />
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <span class="btn-icon">🔍</span>
+                                    بحث
+                                </button>
+                            </form>
+
+                            <div
+                                id="searchResults"
+                                class="search-results"
+                            ></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Status Updates -->
+                <section class="status-updates">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="section-title">
+                                📢 تحديثات التحويلات الطبية
+                            </h3>
+                            <div class="alert-info">
+                                <div class="alert-icon">ℹ️</div>
+                                <p>
+                                    يرجى متابعة حالة التحويلة من خلال النظام.
+                                    سيتم التواصل معكم عند توفر مواعيد جديدة.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Border Crossings & Statistics -->
+                <div class="grid-two-cols">
+                    <!-- Border Crossings -->
+                    <section class="border-crossings">
+                        <div class="card">
+                            <div class="card-content">
+                                <h3 class="section-title">🚪 حالة المعابر</h3>
+                                <div
+                                    id="borderCrossings"
+                                    class="border-crossings-list"
+                                >
+                                    <!-- Border crossings data will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Statistics -->
+                    <section class="statistics">
+                        <div class="card">
+                            <div class="card-content">
+                                <h3 class="section-title">
+                                    📊 إحصائيات النظام
+                                </h3>
+                                <div id="statistics" class="statistics-grid">
+                                    <!-- Statistics data will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Guidelines -->
+                <section class="guidelines">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="section-title">
+                                📋 إرشادات التحويلات الطبية
+                            </h3>
+                            <div class="guidelines-grid">
+                                <div class="guideline-item">
+                                    <div class="guideline-icon">📝</div>
+                                    <div class="guideline-content">
+                                        <h4>تقديم الطلب</h4>
+                                        <p>
+                                            يتم تقديم طلب التحويلة الطبية من
+                                            خلال الطبيب المختص في المركز الصحي
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="guideline-item">
+                                    <div class="guideline-icon">⏱️</div>
+                                    <div class="guideline-content">
+                                        <h4>مدة المعالجة</h4>
+                                        <p>
+                                            تستغرق معالجة الطلب عادة من 10-14
+                                            يوم عمل حسب نوع الحالة
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="guideline-item">
+                                    <div class="guideline-icon">📋</div>
+                                    <div class="guideline-content">
+                                        <h4>الوثائق المطلوبة</h4>
+                                        <p>
+                                            هوية المريض، التقرير الطبي،
+                                            والفحوصات المخبرية والإشعاعية
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="guideline-item">
+                                    <div class="guideline-icon">👥</div>
+                                    <div class="guideline-content">
+                                        <h4>المرافق</h4>
+                                        <p>
+                                            يُسمح بمرافق واحد للمريض حسب الضوابط
+                                            المعمول بها
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FAQ Section -->
+                <section class="faq">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="section-title">❓ الأسئلة الشائعة</h3>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                         onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >كيف يمكنني معرفة حالة التحويلة
+                                            الطبية؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            يمكنك البحث عن حالة التحويلة
+                                            باستخدام رقم الهوية أو رقم التحويلة
+                                            في صفحة البحث أعلاه. ستظهر لك جميع
+                                            المعلومات المتاحة حول حالة التحويلة.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >كم تستغرق معالجة طلب
+                                            التحويلة؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            تستغرق معالجة الطلب عادة من 10-14
+                                            يوم عمل، وقد تختلف حسب نوع الحالة
+                                            الطبية ومدى الحاجة للعلاج والضرورة
+                                            الطبية.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >ما هي الوثائق المطلوبة
+                                            للتحويلة؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            الوثائق المطلوبة تشمل: هوية المريض،
+                                            التقرير الطبي المفصل، الفحوصات
+                                            المخبرية والإشعاعية الحديثة، وأي
+                                            وثائق طبية أخرى ذات صلة بالحالة.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span>هل يمكنني إرفاق مرافق معي؟</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            نعم، يُسمح بمرافق واحد للمريض حسب
+                                            الضوابط والقوانين المعمول بها. يجب
+                                            أن يحمل المرافق هوية شخصية سارية
+                                            المفعول.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >ماذا أفعل إذا تم رفض طلب
+                                            التحويلة؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            يمكنك مراجعة الطبيب المختص لمراجعة
+                                            الحالة وتقديم المزيد من التوثيقات
+                                            الطبية إذا لزم الأمر، أو تقديم طلب
+                                            استئناف حسب الإجراءات المعتمدة.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >كيف أتواصل مع وزارة الصحة لمزيد من
+                                            المعلومات؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            يمكنكم التواصل معنا عبر الخط الساخن:
+                                            1800 أو البريد الإلكتروني:
+                                            info@moh.ps أو زيارة الموقع الرسمي
+                                            للوزارة.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span>ما هي ساعات عمل المعابر؟</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            تختلف ساعات عمل المعابر حسب المعبر
+                                            والظروف الأمنية. يرجى مراجعة قسم
+                                            "حالة المعابر" أعلاه للحصول على أحدث
+                                            المعلومات.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >هل هناك تكلفة للتحويلات
+                                            الطبية؟</span
+                                        >
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            التحويلات الطبية مجانية من قبل وزارة
+                                            الصحة الفلسطينية. قد تكون هناك
+                                            تكاليف إضافية للعلاج في بعض المؤسسات
+                                            الطبية المتخصصة.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span>ما هي أنواع الحالات المشمولة بالتحويل الطبي؟</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            تشمل الحالات المشمولة: الجراحات التخصصية، أمراض القلب والأوعية الدموية، زراعة الأعضاء، علاج الأورام والسرطان، جراحة الأطفال المعقدة، والحالات الطبية النادرة التي تتطلب علاج متقدم غير متوفر محلياً.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span>هل يمكنني اختيار المستشفى ووجهة العلاج؟</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            يتم اختيار المستشفى بناءً على التخصص المطلوب وتوفر الخدمة والاتفاقيات المبرمة مع وزارة الصحة. يمكن أخذ تفضيلات المريض في الاعتبار عند الإمكان، ولكن القرار النهائي يعتمد على المعايير الطبية والإدارية.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span>ما هي الإجراءات في حالة الطوارئ الطبية؟</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            في حالات الطوارئ الطبية، يتم تسريع الإجراءات وقد تتم الموافقة خلال 24-48 ساعة. يجب التواصل فوراً مع الخط الساخن للطوارئ الطبية على رقم 1800، وتقديم التقارير الطبية الفورية التي تؤكد حالة الطوارئ.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span>هل تغطي الوزارة تكاليف الإقامة والمواصلات؟</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            تغطي الوزارة تكاليف العلاج الطبي في المقام الأول. بالنسبة للإقامة والمواصلات، فهي تخضع للموازنة المتاحة وحسب كل حالة. يمكن الحصول على مساعدة جزئية أو كاملة حسب الظروف الاجتماعية والاقتصادية للمريض.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span>كيف يمكنني تحديث بياناتي أو معلومات التحويلة؟</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            يمكنك تحديث بياناتك من خلال زيارة مكتب التحويلات الطبية في المديرية الطبية في محافظتك، أو التواصل عبر الخط الساخن. يجب إحضار هوية شخصية سارية ووثائق التغيير المطلوبة.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span>ماذا أحتاج للحصول على تأشيرة للسفر؟</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>
+                                            بعد الحصول على الموافقة للتحويل الطبي، ستحتاج إلى: جواز سفر ساري المفعول، كتاب التحويل الطبي، الفحوصات والتقارير الطبية، وثائق المرافق إن وُجد. قد تحتاج لمراجعة السفارة أو القنصلية للحصول على التأشيرة حسب بلد الوجهة.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Links -->
+                <section class="quick-links">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="section-title">🔗 روابط مفيدة</h3>
+                            <div class="links-grid">
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=article&id=324&Itemid=167"
+                                    target="_blank"
+                                    class="link-card"
+                                >
+                                    <div class="link-icon">👥</div>
+                                    <div class="link-content">
+                                        <div class="link-title">
+                                            متابعة المرضى المسافرين
+                                        </div>
+                                        <div class="link-description">
+                                            تتبع حالة المرضى خارج الضفة
+                                        </div>
+                                    </div>
+                                </a>
+                                <a
+                                    href="https://site.moh.ps/index/Map/Language/ar"
+                                    target="_blank"
+                                    class="link-card"
+                                >
+                                    <div class="link-icon">🏥</div>
+                                    <div class="link-content">
+                                        <div class="link-title">
+                                            دليل المستشفيات
+                                        </div>
+                                        <div class="link-description">
+                                            قائمة بالمستشفيات المعتمدة
+                                        </div>
+                                    </div>
+                                </a>
+                                <a
                                     href="https://www.moh.ps/index.php?option=com_content&view=article&id=280&Itemid=114"
+                                    target="_blank"
+                                    class="link-card"
+                                >
+                                    <div class="link-icon">📞</div>
+                                    <div class="link-content">
+                                        <div class="link-title">
+                                            أرقام الاتصال
+                                                 <a href="tel:02 240 5730" class="link-content">02 240 5730</a>
+                                        </div>
+                                        <div class="link-description">
+                                            أرقام هامة للتواصل
+                                                <a href="tel:02 240 5730" class="link-content">02 240 5730</a>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>الخدمات الطبية العسكرية</h4>
+                        <p>
+                            نعمل على تقديم أفضل الخدمات الصحية للمواطنين
+                            الفلسطينيين
+                        </p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>روابط سريعة</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.facebook.com/MilitaryMedicalServiceofpalestine/?locale=ar_AR">الموقع الرسمي</a>
+                            </li>
+                            <li>
+                                <a
+                                    href="tel:02 240 5730"
+                                    >اتصل بنا</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>معلومات الاتصال</h4>
+                        <p>📞 الخط الساخن: 02 240 5730</p>
+                        <p>📧 البريد الإلكتروني: info@moh.ps</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        &copy; 2025 الخدمات الطبية العسكرية - جميع الحقوق محفوظة | إعداد عبدالرحيم صلاح
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
+"
                                     >اتصل بنا</a
                                 >
                             </li>
