@@ -1,11 +1,16 @@
-<html lang="ar" dir="rtl" data-theme="light"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>نظام التحويلات الطبية - وزارة الصحة الفلسطينية</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <!-- Header -->
@@ -20,7 +25,9 @@
                         </div>
                     </div>
                     <div class="header-actions">
-                        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+                        <div class="theme-toggle" onclick="toggleTheme()">
+                            🌙
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,11 +50,23 @@
                             <form class="search-form" id="searchForm">
                                 <div class="form-group">
                                     <label for="patientId">رقم الهوية</label>
-                                    <input type="text" id="patientId" name="patientId" placeholder="أدخل رقم الهوية">
+                                    <input
+                                        type="text"
+                                        id="patientId"
+                                        name="patientId"
+                                        placeholder="أدخل رقم الهوية"
+                                    />
                                 </div>
                                 <div class="form-group">
-                                    <label for="referralNumber">رقم التحويلة</label>
-                                    <input type="text" id="referralNumber" name="referralNumber" placeholder="أدخل رقم التحويلة">
+                                    <label for="referralNumber"
+                                        >رقم التحويلة</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="referralNumber"
+                                        name="referralNumber"
+                                        placeholder="أدخل رقم التحويلة"
+                                    />
                                 </div>
                                 <button type="submit" class="btn-primary">
                                     <span class="btn-icon">🔍</span>
@@ -55,7 +74,10 @@
                                 </button>
                             </form>
 
-                            <div id="searchResults" class="search-results"></div>
+                            <div
+                                id="searchResults"
+                                class="search-results"
+                            ></div>
                         </div>
                     </div>
                 </section>
@@ -85,67 +107,12 @@
                         <div class="card">
                             <div class="card-content">
                                 <h3 class="section-title">🚪 حالة المعابر</h3>
-                                <div id="borderCrossings" class="border-crossings-list">
-        <div class="crossing-item">
-            <div class="crossing-info">
-                <h4>معبر الكرامة</h4>
-                <p>King Hussein Bridge</p>
-                <p>ساعات العمل: 24 ساعة</p>
-                <p>ملاحظات: مفتوح للمرضى والمرافقين</p>
-                <p style="font-size: 0.75rem; color: var(--text-muted);">
-                    آخر تحديث: ٢٢ ربيع الأول ١٤٤٦ هـ في ٠٣:٠٠ م
-                </p>
-            </div>
-            <div class="crossing-status crossing-open">
-                مفتوح
-            </div>
-        </div>
-    
-        <div class="crossing-item">
-            <div class="crossing-info">
-                <h4>معبر رفح</h4>
-                <p>Rafah Crossing</p>
-                <p>ساعات العمل: مغلق مؤقتاً</p>
-                <p>ملاحظات: مغلق بسبب الأوضاع الأمنية</p>
-                <p style="font-size: 0.75rem; color: var(--text-muted);">
-                    آخر تحديث: ٢٢ ربيع الأول ١٤٤٦ هـ في ٠١:٣٠ م
-                </p>
-            </div>
-            <div class="crossing-status crossing-closed">
-                مغلق
-            </div>
-        </div>
-    
-        <div class="crossing-item">
-            <div class="crossing-info">
-                <h4>معبر بيت حانون</h4>
-                <p>Erez Crossing</p>
-                <p>ساعات العمل: 8:00 - 16:00</p>
-                <p>ملاحظات: مفتوح للحالات الطبية الطارئة فقط</p>
-                <p style="font-size: 0.75rem; color: var(--text-muted);">
-                    آخر تحديث: ٢٢ ربيع الأول ١٤٤٦ هـ في ٠٥:١٥ م
-                </p>
-            </div>
-            <div class="crossing-status crossing-restricted">
-                مقيد
-            </div>
-        </div>
-    
-        <div class="crossing-item">
-            <div class="crossing-info">
-                <h4>معبر القنيطرة</h4>
-                <p>Quneitra Crossing</p>
-                <p>ساعات العمل: 6:00 - 18:00</p>
-                <p>ملاحظات: مفتوح للحالات الطبية المعتمدة</p>
-                <p style="font-size: 0.75rem; color: var(--text-muted);">
-                    آخر تحديث: ٢٢ ربيع الأول ١٤٤٦ هـ في ٠٢:٢٠ م
-                </p>
-            </div>
-            <div class="crossing-status crossing-open">
-                مفتوح
-            </div>
-        </div>
-    </div>
+                                <div
+                                    id="borderCrossings"
+                                    class="border-crossings-list"
+                                >
+                                    <!-- Border crossings data will be loaded here -->
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -158,31 +125,8 @@
                                     📊 إحصائيات النظام
                                 </h3>
                                 <div id="statistics" class="statistics-grid">
-        <div class="stat-item">
-            <div class="stat-value">1,247</div>
-            <div class="stat-label">إجمالي التحويلات</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">892</div>
-            <div class="stat-label">السفرات المكتملة</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">156</div>
-            <div class="stat-label">تحويلات هذا الشهر</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">234</div>
-            <div class="stat-label">في الانتظار</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">%78</div>
-            <div class="stat-label">معدل الموافقة</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-value">12 يوم</div>
-            <div class="stat-label">متوسط المعالجة</div>
-        </div>
-    </div>
+                                    <!-- Statistics data will be loaded here -->
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -248,9 +192,14 @@
                             <h3 class="section-title">❓ الأسئلة الشائعة</h3>
                             <div class="faq-list">
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
-                                        <span>كيف يمكنني معرفة حالة التحويلة
-                                            الطبية؟</span>
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >كيف يمكنني معرفة حالة التحويلة
+                                            الطبية؟</span
+                                        >
                                         <span class="faq-toggle">+</span>
                                     </div>
                                     <div class="faq-answer">
@@ -263,9 +212,14 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
-                                        <span>كم تستغرق معالجة طلب
-                                            التحويلة؟</span>
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >كم تستغرق معالجة طلب
+                                            التحويلة؟</span
+                                        >
                                         <span class="faq-toggle">+</span>
                                     </div>
                                     <div class="faq-answer">
@@ -278,9 +232,14 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
-                                        <span>ما هي الوثائق المطلوبة
-                                            للتحويلة؟</span>
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >ما هي الوثائق المطلوبة
+                                            للتحويلة؟</span
+                                        >
                                         <span class="faq-toggle">+</span>
                                     </div>
                                     <div class="faq-answer">
@@ -293,7 +252,10 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
                                         <span>هل يمكنني إرفاق مرافق معي؟</span>
                                         <span class="faq-toggle">+</span>
                                     </div>
@@ -307,9 +269,14 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
-                                        <span>ماذا أفعل إذا تم رفض طلب
-                                            التحويلة؟</span>
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >ماذا أفعل إذا تم رفض طلب
+                                            التحويلة؟</span
+                                        >
                                         <span class="faq-toggle">+</span>
                                     </div>
                                     <div class="faq-answer">
@@ -322,9 +289,14 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
-                                        <span>كيف أتواصل مع وزارة الصحة لمزيد من
-                                            المعلومات؟</span>
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >كيف أتواصل مع وزارة الصحة لمزيد من
+                                            المعلومات؟</span
+                                        >
                                         <span class="faq-toggle">+</span>
                                     </div>
                                     <div class="faq-answer">
@@ -337,7 +309,10 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
                                         <span>ما هي ساعات عمل المعابر؟</span>
                                         <span class="faq-toggle">+</span>
                                     </div>
@@ -351,9 +326,14 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
-                                        <span>هل هناك تكلفة للتحويلات
-                                            الطبية؟</span>
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
+                                        <span
+                                            >هل هناك تكلفة للتحويلات
+                                            الطبية؟</span
+                                        >
                                         <span class="faq-toggle">+</span>
                                     </div>
                                     <div class="faq-answer">
@@ -366,7 +346,10 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
                                         <span>ما هي أنواع الحالات المشمولة بالتحويل الطبي؟</span>
                                         <span class="faq-toggle">+</span>
                                     </div>
@@ -377,7 +360,10 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
                                         <span>هل يمكنني اختيار المستشفى ووجهة العلاج؟</span>
                                         <span class="faq-toggle">+</span>
                                     </div>
@@ -388,7 +374,10 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
                                         <span>ما هي الإجراءات في حالة الطوارئ الطبية؟</span>
                                         <span class="faq-toggle">+</span>
                                     </div>
@@ -399,7 +388,10 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
                                         <span>هل تغطي الوزارة تكاليف الإقامة والمواصلات؟</span>
                                         <span class="faq-toggle">+</span>
                                     </div>
@@ -410,7 +402,10 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
                                         <span>كيف يمكنني تحديث بياناتي أو معلومات التحويلة؟</span>
                                         <span class="faq-toggle">+</span>
                                     </div>
@@ -421,7 +416,10 @@
                                     </div>
                                 </div>
                                 <div class="faq-item">
-                                    <div class="faq-question" onclick="toggleFAQ(this)" tabindex="0" role="button" aria-expanded="false">
+                                    <div
+                                        class="faq-question"
+                                        onclick="toggleFAQ(this)"
+                                    >
                                         <span>ماذا أحتاج للحصول على تأشيرة للسفر؟</span>
                                         <span class="faq-toggle">+</span>
                                     </div>
@@ -442,7 +440,11 @@
                         <div class="card-content">
                             <h3 class="section-title">🔗 روابط مفيدة</h3>
                             <div class="links-grid">
-                                <a href="https://www.moh.ps/index.php?option=com_content&amp;view=article&amp;id=324&amp;Itemid=167" target="_blank" class="link-card">
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=article&id=324&Itemid=167"
+                                    target="_blank"
+                                    class="link-card"
+                                >
                                     <div class="link-icon">👥</div>
                                     <div class="link-content">
                                         <div class="link-title">
@@ -453,7 +455,11 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="https://www.moh.ps/index.php?option=com_content&amp;view=category&amp;id=95&amp;Itemid=506" target="_blank" class="link-card">
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=category&id=95&Itemid=506"
+                                    target="_blank"
+                                    class="link-card"
+                                >
                                     <div class="link-icon">🏥</div>
                                     <div class="link-content">
                                         <div class="link-title">
@@ -464,7 +470,11 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="https://www.moh.ps/index.php?option=com_content&amp;view=article&amp;id=280&amp;Itemid=114" target="_blank" class="link-card">
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=article&id=280&Itemid=114"
+                                    target="_blank"
+                                    class="link-card"
+                                >
                                     <div class="link-icon">📞</div>
                                     <div class="link-content">
                                         <div class="link-title">
@@ -500,7 +510,10 @@
                                 <a href="https://www.moh.ps">الموقع الرسمي</a>
                             </li>
                             <li>
-                                <a href="https://www.moh.ps/index.php?option=com_content&amp;view=article&amp;id=280&amp;Itemid=114">اتصل بنا</a>
+                                <a
+                                    href="https://www.moh.ps/index.php?option=com_content&view=article&id=280&Itemid=114"
+                                    >اتصل بنا</a
+                                >
                             </li>
                         </ul>
                     </div>
@@ -512,13 +525,12 @@
                 </div>
                 <div class="footer-bottom">
                     <p>
-                        © 2025 وزارة الصحة الفلسطينية - جميع الحقوق محفوظة | إعداد عبدالرحيم صلاح
+                        &copy; 2025 وزارة الصحة الفلسطينية - جميع الحقوق محفوظة | إعداد عبدالرحيم صلاح
                     </p>
                 </div>
             </div>
         </footer>
 
         <script src="script.js"></script>
-    
-
-</body></html>
+    </body>
+</html>
