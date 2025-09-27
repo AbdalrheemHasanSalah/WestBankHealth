@@ -210,7 +210,7 @@ function displaySearchResults(referrals) {
             <div class="referral-header">
                 <div class="referral-info">
                     <h4>${referral.patientName}</h4>
-                    <p>رقم الهوية: ${referral.patientId} | رقم التحويلة: ${referral.referralNumber}</p>
+                    <p>رقم الهوية: ${referral.patientId} | رقم التأمين: ${referral.referralNumber}</p>
                     <p>الوجهة: ${referral.destination}</p>
                     <p>الحالة الطبية: ${referral.medicalCondition}</p>
                 </div>
