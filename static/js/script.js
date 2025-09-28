@@ -99,7 +99,13 @@ const staticStatistics = {
     averageProcessingDays: 12,
     lastUpdated: '2024-09-25T14:00:00.000Z'
 };
-
+  document.getElementById("patientId").addEventListener("input", function(e) {
+    this.value = this.value.replace(/[^0-9]/g, "");
+  });
+document.getElementById("referralNumber").addEventListener("input", function(e) {
+    this.value = this.value.replace(/[^0-9]/g, "");
+});
+  
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializeTheme();
