@@ -1,4 +1,3 @@
-
 // Medical Referrals System JavaScript - Static Version
 
 // Global variables
@@ -52,61 +51,72 @@ const staticReferrals = [
 ];
 
 const staticBorderCrossings = [
-  {
-    id: '1',
-    name: 'معبر الكرامة',
-    nameEn: 'King Hussein Bridge',
-    status: 'open',
-    workingHours: '24 ساعة',
-    notes: 'مفتوح للمرضى والمرافقين',
-    lastUpdate: '2025-09-29T08:00:00.000Z'
-  },
-  {
-    id: '2',
-    name: 'معبر رفح',
-    nameEn: 'Rafah Crossing',
-    status: 'closed',
-    workingHours: 'مغلق مؤقتاً',
-    notes: 'مغلق بسبب الأوضاع الأمنية',
-    lastUpdate: '2025-09-29T08:15:00.000Z'
-  },
-  {
-    id: '3',
-    name: 'معبر بيت حانون',
-    nameEn: 'Erez Crossing',
-    status: 'restricted',
-    workingHours: '8:00 - 16:00',
-    notes: 'مفتوح للحالات الإنسانية والطبية فقط',
-    lastUpdate: '2025-09-29T07:45:00.000Z'
-  },
-  {
-    id: '4',
-    name: 'معبر القنيطرة',
-    nameEn: 'Quneitra Crossing',
-    status: 'open',
-    workingHours: '6:00 - 18:00',
-    notes: 'مفتوح للحالات الطبية المعتمدة',
-    lastUpdate: '2025-09-29T08:05:00.000Z'
-  }
+    {
+        id: '1',
+        name: 'معبر الكرامة',
+        nameEn: 'King Hussein Bridge',
+        status: 'open',
+        workingHours: '24 ساعة',
+        notes: 'مفتوح للمرضى والمرافقين',
+        lastUpdate: '2024-09-25T12:00:00.000Z'
+    },
+    {
+        id: '2',
+        name: 'معبر رفح',
+        nameEn: 'Rafah Crossing',
+        status: 'closed',
+        workingHours: 'مغلق مؤقتاً',
+        notes: 'مغلق بسبب الأوضاع الأمنية',
+        lastUpdate: '2024-09-25T10:30:00.000Z'
+    },
+    {
+        id: '3',
+        name: 'معبر بيت حانون',
+        nameEn: 'Erez Crossing',
+        status: 'restricted',
+        workingHours: '8:00 - 16:00',
+        notes: 'مفتوح للحالات الطبية الطارئة فقط',
+        lastUpdate: '2024-09-25T14:15:00.000Z'
+    },
+    {
+        id: '4',
+        name: 'معبر القنيطرة',
+        nameEn: 'Quneitra Crossing',
+        status: 'open',
+        workingHours: '6:00 - 18:00',
+        notes: 'مفتوح للحالات الطبية المعتمدة',
+        lastUpdate: '2024-09-25T11:20:00.000Z'
+    }
 ];
 
-
 const staticStatistics = {
-   totalReferrals: 3120,            
-  completedTravels: 2485,         
-  monthlyReferrals: 275,           
-  pendingReferrals: 410,          
-  approvalRate: 83,               
-  averageProcessingDays: 9,       
-  lastUpdated: '2025-09-29T08:30:00.000Z'
+    totalReferrals: 1247,
+    completedTravels: 892,
+    monthlyReferrals: 156,
+    pendingReferrals: 234,
+    approvalRate: 78,
+    averageProcessingDays: 12,
+    lastUpdated: '2024-09-25T14:00:00.000Z'
 };
-  document.getElementById("patientId").addEventListener("input", function(e) {
-    this.value = this.value.replace(/[^0-9]/g, "");
-  });
-document.getElementById("referralNumber").addEventListener("input", function(e) {
-    this.value = this.value.replace(/[^0-9]/g, "");
+
+// Input restrictions
+document.addEventListener('DOMContentLoaded', function() {
+    const patientIdInput = document.getElementById("patientId");
+    const referralNumberInput = document.getElementById("referralNumber");
+    
+    if (patientIdInput) {
+        patientIdInput.addEventListener("input", function(e) {
+            this.value = this.value.replace(/[^0-9]/g, "");
+        });
+    }
+    
+    if (referralNumberInput) {
+        referralNumberInput.addEventListener("input", function(e) {
+            this.value = this.value.replace(/[^0-9]/g, "");
+        });
+    }
 });
-  
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializeTheme();
@@ -142,12 +152,30 @@ function initializeEventListeners() {
     if (searchForm) {
         searchForm.addEventListener('submit', handleSearch);
     }
+}
 
-    // FAQ toggles
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', () => toggleFAQ(question));
+// FAQ functionality - دالة بسيطة للأسئلة الشائعة
+function toggleFAQ(questionElement) {
+    // العثور على العنصر الأساسي للسؤال
+    const faqItem = questionElement.closest('.faq-item');
+    const faqAnswer = faqItem.querySelector('.faq-answer');
+    const faqToggle = faqItem.querySelector('.faq-toggle');
+    
+    // التحقق من الحالة الحالية
+    const isActive = faqItem.classList.contains('active');
+    
+    // إغلاق جميع الأسئلة الأخرى
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+        const toggle = item.querySelector('.faq-toggle');
+        if (toggle) toggle.textContent = '+';
     });
+    
+    // إذا لم يكن السؤال مفعل، قم بتفعيله
+    if (!isActive) {
+        faqItem.classList.add('active');
+        if (faqToggle) faqToggle.textContent = '-';
+    }
 }
 
 // Search functionality with static data
@@ -159,12 +187,12 @@ function handleSearch(event) {
     const referralNumber = formData.get('referralNumber').trim();
     
     if (!patientId && !referralNumber) {
-        showAlert('يرجى إدخال رقم الهوية أو رقم التحويلة للبحث', 'warning');
+        alert('يرجى إدخال رقم الهوية أو رقم التحويلة للبحث');
         return;
     }
     
     const searchResults = document.getElementById('searchResults');
-    searchResults.innerHTML = '<div class="loading"></div>';
+    searchResults.innerHTML = '<div class="loading">جاري البحث...</div>';
     searchResults.classList.add('show');
     
     // Simulate API delay
@@ -251,17 +279,21 @@ function loadBorderCrossings() {
         displayBorderCrossings();
     } catch (error) {
         console.error('Border crossings error:', error);
-        document.getElementById('borderCrossings').innerHTML = `
-            <div class="alert-info" style="background: #fee2e2; border-color: #fecaca;">
-                <div class="alert-icon">⚠️</div>
-                <p>خطأ في تحميل بيانات المعابر</p>
-            </div>
-        `;
+        const container = document.getElementById('borderCrossings');
+        if (container) {
+            container.innerHTML = `
+                <div class="alert-info" style="background: #fee2e2; border-color: #fecaca;">
+                    <div class="alert-icon">⚠️</div>
+                    <p>خطأ في تحميل بيانات المعابر</p>
+                </div>
+            `;
+        }
     }
 }
 
 function displayBorderCrossings() {
     const container = document.getElementById('borderCrossings');
+    if (!container) return;
     
     const crossingsHTML = staticBorderCrossings.map(crossing => `
         <div class="crossing-item">
@@ -298,17 +330,21 @@ function loadStatistics() {
         displayStatistics();
     } catch (error) {
         console.error('Statistics error:', error);
-        document.getElementById('statistics').innerHTML = `
-            <div class="alert-info" style="background: #fee2e2; border-color: #fecaca;">
-                <div class="alert-icon">⚠️</div>
-                <p>خطأ في تحميل الإحصائيات</p>
-            </div>
-        `;
+        const container = document.getElementById('statistics');
+        if (container) {
+            container.innerHTML = `
+                <div class="alert-info" style="background: #fee2e2; border-color: #fecaca;">
+                    <div class="alert-icon">⚠️</div>
+                    <p>خطأ في تحميل الإحصائيات</p>
+                </div>
+            `;
+        }
     }
 }
 
 function displayStatistics() {
     const container = document.getElementById('statistics');
+    if (!container) return;
     
     const statsHTML = `
         <div class="stat-item">
@@ -340,107 +376,14 @@ function displayStatistics() {
     container.innerHTML = statsHTML;
 }
 
-// FAQ functionality
-function toggleFAQ(questionElement) {
-    const faqItem = questionElement.parentElement;
-    const isActive = faqItem.classList.contains('active');
-    
-    // Close all FAQ items
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    
-    // If it wasn't active, open it
-    if (!isActive) {
-        faqItem.classList.add('active');
-    }
-}
-
-// Utility functions
+// Date formatting function
 function formatDate(dateString) {
-    if (!dateString) return 'غير محدد';
-    
-    try {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('ar-SA', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        }).format(date);
-    } catch (error) {
-        return 'تاريخ غير صحيح';
-    }
-}
-
-function showAlert(message, type = 'info') {
-    // Create alert element
-    const alert = document.createElement('div');
-    alert.className = `alert-${type}`;
-    alert.style.position = 'fixed';
-    alert.style.top = '20px';
-    alert.style.right = '20px';
-    alert.style.zIndex = '1000';
-    alert.style.padding = 'var(--spacing-md)';
-    alert.style.borderRadius = 'var(--radius-md)';
-    alert.style.boxShadow = 'var(--shadow-lg)';
-    alert.innerHTML = `
-        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-            <span>${type === 'warning' ? '⚠️' : type === 'error' ? '❌' : 'ℹ️'}</span>
-            <span>${message}</span>
-        </div>
-    `;
-    
-    document.body.appendChild(alert);
-    
-    // Remove alert after 5 seconds
-    setTimeout(() => {
-        if (alert.parentNode) {
-            alert.parentNode.removeChild(alert);
-        }
-    }, 5000);
-}
-
-// Smooth scrolling for anchor links
-document.addEventListener('click', function(e) {
-    if (e.target.tagName === 'A' && e.target.getAttribute('href') && e.target.getAttribute('href').startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(e.target.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-});
-
-// Keyboard navigation support
-document.addEventListener('keydown', function(e) {
-    // ESC key to close active FAQ
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.faq-item.active').forEach(item => {
-            item.classList.remove('active');
-        });
-    }
-    
-    // Enter key on FAQ questions
-    if (e.key === 'Enter' && e.target.classList.contains('faq-question')) {
-        toggleFAQ(e.target);
-    }
-});
-
-// Add keyboard navigation to FAQ questions
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.setAttribute('tabindex', '0');
-        question.setAttribute('role', 'button');
-        question.setAttribute('aria-expanded', 'false');
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ar-EG', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
     });
-});
-
-// Update aria-expanded when FAQ is toggled
-const originalToggleFAQ = toggleFAQ;
-function toggleFAQ(questionElement) {
-    const wasActive = questionElement.parentElement.classList.contains('active');
-    originalToggleFAQ(questionElement);
-    questionElement.setAttribute('aria-expanded', !wasActive);
 }
