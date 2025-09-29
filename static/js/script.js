@@ -52,52 +52,53 @@ const staticReferrals = [
 ];
 
 const staticBorderCrossings = [
-    {
-        id: '1',
-        name: 'معبر الكرامة',
-        nameEn: 'King Hussein Bridge',
-        status: 'open',
-        workingHours: '24 ساعة',
-        notes: 'مفتوح للمرضى والمرافقين',
-        lastUpdate: '2024-09-25T12:00:00.000Z'
-    },
-    {
-        id: '2',
-        name: 'معبر رفح',
-        nameEn: 'Rafah Crossing',
-        status: 'closed',
-        workingHours: 'مغلق مؤقتاً',
-        notes: 'مغلق بسبب الأوضاع الأمنية',
-        lastUpdate: '2024-09-25T10:30:00.000Z'
-    },
-    {
-        id: '3',
-        name: 'معبر بيت حانون',
-        nameEn: 'Erez Crossing',
-        status: 'restricted',
-        workingHours: '8:00 - 16:00',
-        notes: 'مفتوح للحالات الطبية الطارئة فقط',
-        lastUpdate: '2024-09-25T14:15:00.000Z'
-    },
-    {
-        id: '4',
-        name: 'معبر القنيطرة',
-        nameEn: 'Quneitra Crossing',
-        status: 'open',
-        workingHours: '6:00 - 18:00',
-        notes: 'مفتوح للحالات الطبية المعتمدة',
-        lastUpdate: '2024-09-25T11:20:00.000Z'
-    }
+  {
+    id: '1',
+    name: 'معبر الكرامة',
+    nameEn: 'King Hussein Bridge',
+    status: 'open',
+    workingHours: '24 ساعة',
+    notes: 'مفتوح للمرضى والمرافقين',
+    lastUpdate: '2025-09-29T08:00:00.000Z'
+  },
+  {
+    id: '2',
+    name: 'معبر رفح',
+    nameEn: 'Rafah Crossing',
+    status: 'closed',
+    workingHours: 'مغلق مؤقتاً',
+    notes: 'مغلق بسبب الأوضاع الأمنية',
+    lastUpdate: '2025-09-29T08:15:00.000Z'
+  },
+  {
+    id: '3',
+    name: 'معبر بيت حانون',
+    nameEn: 'Erez Crossing',
+    status: 'restricted',
+    workingHours: '8:00 - 16:00',
+    notes: 'مفتوح للحالات الإنسانية والطبية فقط',
+    lastUpdate: '2025-09-29T07:45:00.000Z'
+  },
+  {
+    id: '4',
+    name: 'معبر القنيطرة',
+    nameEn: 'Quneitra Crossing',
+    status: 'open',
+    workingHours: '6:00 - 18:00',
+    notes: 'مفتوح للحالات الطبية المعتمدة',
+    lastUpdate: '2025-09-29T08:05:00.000Z'
+  }
 ];
 
+
 const staticStatistics = {
-    totalReferrals: 1247,
-    completedTravels: 892,
-    monthlyReferrals: 156,
-    pendingReferrals: 234,
-    approvalRate: 78,
-    averageProcessingDays: 12,
-    lastUpdated: '2024-09-25T14:00:00.000Z'
+   totalReferrals: 3120,            
+  completedTravels: 2485,         
+  monthlyReferrals: 275,           
+  pendingReferrals: 410,          
+  approvalRate: 83,               
+  averageProcessingDays: 9,       
+  lastUpdated: '2025-09-29T08:30:00.000Z'
 };
   document.getElementById("patientId").addEventListener("input", function(e) {
     this.value = this.value.replace(/[^0-9]/g, "");
